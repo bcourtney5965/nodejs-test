@@ -1,11 +1,10 @@
 const KoaRouter = require('koa-router');
+const { getUsers } = require('../controllers/index');
 
 
 const indexRouter = new KoaRouter();
 
-indexRouter.get('/', async function(ctx) {
-	ctx.body = 'Hello World';
-});
 
+indexRouter.get('/', getUsers);
 
 module.exports = indexRouter;
