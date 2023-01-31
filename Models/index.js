@@ -6,9 +6,9 @@ class Members {
   async _getDb() {
 		if (!this._db) {
 			this._db = await open({
-			      filename: path.join(__dirname, '../', 'data', 'sqlitedb'),
-			      driver: sqlite3.Database
-			    });
+				filename: path.join(__dirname, '../', 'data', 'sqlitedb'),
+				driver: sqlite3.Database
+			});
 		}
 		return this._db;
 	}

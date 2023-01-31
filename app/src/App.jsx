@@ -1,32 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useEffect, useState } from 'react'
+import axios from 'axios';
+import LeftTable from './components/LeftTable';
+import RightTable from './components/RightTable';
+import Image from './components/Image';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [members, setMembers] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:3000/members')
+    .then(function (response) {
+      // handle success
+      setMembers(response.data)
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
+  })
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>members</h1>
+      {members.map((member, i) => {
+        return (
+          <>
+            <LeftTable
+              firstName={member.firstName}
+              lastName={member.lastName}
+              company={member.company}
+              title={member.title}
+              dept={member.department}
+              />
+            <RightTable
+              phone={member.phone}
+              address={member.address}
+              city={member.city}
+              state={member.state}
+              zip={member.zip}
+              url={member.url}
+            />
+            <Image url={member.image} />
+          </>
+        )
+      })}
     </div>
   )
 }

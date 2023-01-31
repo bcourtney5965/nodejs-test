@@ -16,7 +16,7 @@ app.use(indexRouter.routes())
 
 
 // Serve static files from public directory
-app.use(koaStatic('./public/app/dist'));
+app.use(koaStatic('./app/dist/'));
 
 
 module.exports = app;
