@@ -1,22 +1,24 @@
 function LeftTable({firstName, lastName, company, title, dept}) {
   return (
     <table>
-      <tr>
-        <td>Name:</td>
-        <td>{firstName} {lastName}</td>
-      </tr>
-      <tr>
-        <td>Company:</td>
-        <td>{company}</td>
-      </tr>
-      <tr>
-        <td>Title:</td>
-        <td>{title}</td>
-      </tr>
-      <tr>
-        <td>Department:</td>
-        <td>{dept}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <th>Name:</th>
+          <td>{firstName} {lastName}</td>
+        </tr>
+        <tr>
+          <th>Company:</th>
+          <td>{company}</td>
+        </tr>
+        <tr>
+          <th>Title:</th>
+          <td>{title}</td>
+        </tr>
+        <tr>
+          <th>Department:</th>
+          <td>{dept}</td>
+        </tr>
+      </tbody>
     </table>
   )
 }

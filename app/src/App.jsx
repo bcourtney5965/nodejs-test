@@ -24,7 +24,7 @@ function App() {
       <h1>members</h1>
       {members.map((member, i) => {
         return (
-          <>
+          <div key={member.id}>
             <LeftTable
               firstName={member.firstName}
               lastName={member.lastName}
@@ -41,7 +41,7 @@ function App() {
               url={member.url}
             />
             <Image url={member.image} />
-          </>
+          </div>
         )
       })}
     </div>

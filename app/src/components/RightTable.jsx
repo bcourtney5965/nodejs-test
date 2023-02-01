@@ -1,22 +1,24 @@
 function RightTable({phone, address, city, state, zip, url}) {
   return (
     <table>
-      <tr>
-        <td>Phone:</td>
-        <td>{phone}</td>
-      </tr>
-      <tr>
-        <td>Address:</td>
-        <td>{address}</td>
-      </tr>
-      <tr>
-        <td>{" "}</td>
-        <td>{city}, {state} {zip}</td>
-      </tr>
-      <tr>
-        <td>Website:</td>
-        <td>{url}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <th>Phone:</th>
+          <td>{phone}</td>
+        </tr>
+        <tr>
+          <th>Address:</th>
+          <td>{address}</td>
+        </tr>
+        <tr>
+          <th>{" "}</th>
+          <td>{city}, {state} {zip}</td>
+        </tr>
+        <tr>
+          <th>Website:</th>
+          <td>{url}</td>
+        </tr>
+      </tbody>
     </table>
   )
 }
