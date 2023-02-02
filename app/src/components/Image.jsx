@@ -1,5 +1,5 @@
-function Image({url}) {
-  return <img src={url} alt="Girl in a jacket" width="500" height="600" />;
+function Image({url, width, height}) {
+  return <img src={url} alt="user picture" width={width} height={height} />;
 }
 
 export default Image;

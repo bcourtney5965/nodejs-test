@@ -1,7 +1,7 @@
 function RightTable({phone, address, city, state, zip, url}) {
   return (
     <table>
-      <tbody>
+      <tbody className="text-left">
         <tr>
           <th>Phone:</th>
           <td>{phone}</td>

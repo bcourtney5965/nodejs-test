@@ -1,7 +1,7 @@
 function LeftTable({firstName, lastName, company, title, dept}) {
   return (
     <table>
-      <tbody>
+      <tbody className="text-left">
         <tr>
           <th>Name:</th>
           <td>{firstName} {lastName}</td>
