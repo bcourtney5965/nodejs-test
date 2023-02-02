@@ -6,20 +6,25 @@ import Image from '../components/Image';
 import './App.css';
 import stubData from '../stubData.json'
 import { findLastIndex } from 'ramda';
+import { useSelector, useDispatch } from 'react-redux'
+import { setMembers } from '../Redux/memberSlice'
 
 function App() {
-  const [members, setMembers] = useState([]);
+  const members = useSelector(state => state.members.list);
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    // axios.get('http://localhost:3000/members')
-    // .then(function (response) {
-    //   // handle success
-    //   setMembers(response.data)
-    // })
-    // .catch(function (error) {
-    //   // handle error
-    //   console.log(error);
-    // });
-    setMembers(stubData);
+    axios.get('http://localhost:3000/members')
+    .then(function (response) {
+      // handle success
+      dispatch(setMembers(response.data));
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
+
+    dispatch(setMembers(stubData))
   }, [])
 
   return (
