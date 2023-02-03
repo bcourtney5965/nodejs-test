@@ -13,17 +13,6 @@ export default defineConfig({
       }
     }
   }
-  // server: {
-  // proxy: {
-  //       '/api': {
-  //         changeOrigin: true,
-  //         rewrite: (path) => path.replace(/^\/api/, ''),
-  //         secure: false,
-  //         target: 'https://localhost:44305',
-  //         ws: true,
-  //       }
-  //   }
-  // }
 })
 
 

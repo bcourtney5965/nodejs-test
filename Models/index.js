@@ -16,7 +16,7 @@ class Members {
 	async getAll() {
     const sql = "SELECT Members.*, Addresses.id, Addresses.memberId AS id, Addresses.primaryAddress, Addresses.address, Addresses.city, Addresses.state, Addresses.zip FROM Members INNER JOIN Addresses ON Members.id = Addresses.memberId WHERE Addresses.primaryAddress IS NOT 0";
 		let db = await this._getDb();
-    const users = []
+    const users = [];
 		await db.each(sql, function(err, row) {
       if (err) {
         console.log(err);
