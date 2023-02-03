@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    axios.get('http://localhost:3000/members')
+    axios.get('http://localhost:3000/api/members')
     .then(function (response) {
       // handle success
       dispatch(setMembers(response.data));

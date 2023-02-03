@@ -3,10 +3,11 @@ if (require.main === module) {
 }
 
 const Koa = require('koa');
+const cors = require('@koa/cors');
 const koaStatic = require('koa-static');
 
 const app = new Koa();
-
+app.use(cors());
 
 // Register Routes
 let indexRouter = require('./routes/index');
