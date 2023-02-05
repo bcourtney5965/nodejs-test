@@ -1,6 +1,7 @@
-function LeftTable({firstName, lastName, company, title, dept}) {
+function LeftTable({firstName, lastName, company, title, dept, id, className}) {
   return (
-    <table>
+    <table id={id} className={className}>
+      <col span="1" className="w-1/3" />
       <tbody className="text-left">
         <tr>
           <th>Name:</th>

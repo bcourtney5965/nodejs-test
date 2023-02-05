@@ -1,6 +1,7 @@
-function RightTable({phone, address, city, state, zip, url}) {
+function RightTable({phone, address, city, state, zip, url, id, className}) {
   return (
-    <table>
+    <table id={id} className={className}>
+      <col span="1" className="w-1/3" />
       <tbody className="text-left">
         <tr>
           <th>Phone:</th>

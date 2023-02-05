@@ -1,27 +1,44 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';;
-import LeftTable from '../components/LeftTable';
-import RightTable from '../components/RightTable';
-import Image from '../components/Image';
+import ConditionallyRender from '../components/ConditionallyRender';
+import Members from '../components/Members';
+import { Input } from '@chakra-ui/react'
+import { SearchIcon } from '@chakra-ui/icons'
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { setMembers, setFilteredMembers, filterMembers } from '../Redux/memberSlice'
 
+const ConditionallyRenderMembers = ConditionallyRender(Members);
+
 function App() {
   const membersFiltered = useSelector(state => state.members.membersFiltered);
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch();
 
   const getMembers = () => {
+    setIsLoading(true);
     axios.get('http://localhost:3000/api/members')
-      .then(function (response) {
+      .then( res => {
         // handle success
-        dispatch(setMembers(response.data));
-        dispatch(setFilteredMembers(response.data));
+        dispatch(setMembers(res.data));
+        dispatch(setFilteredMembers(res.data));
       })
-      .catch(function (error) {
+      .catch( err => {
         // handle error
-        console.log(error);
-      });
+        console.log(err);
+      })
+      .finally( () => {
+        setIsLoading(false);
+      })
+  }
+
+  const handleChange = (e) => {
+    const val = e.target.value;
+    dispatch(filterMembers(val));
+    if (!val) {
+      // refresh state
+      getMembers();
+    }
   }
 
   useEffect(() => {
@@ -29,50 +46,33 @@ function App() {
   }, [])
 
   return (
-    <>
-      <Image
-        url={"/logo.png"}
-        width={100}
-        height={104}
-      />
-      <h2>U.S. Ski and Snowboard Coding Test</h2>
-      <input type="text" onChange={e=> {
-        const val = e.target.value
-        dispatch(filterMembers(val));
-        if (!val) {
-          // refresh state
-          getMembers();
-        }
-      }} />
-      <div className="App bg-white">
-        {membersFiltered.map((member, i) => {
-          return (
-            <div key={member.id} className="grid grid-cols-3">
-              <LeftTable
-                firstName={member.firstName}
-                lastName={member.lastName}
-                company={member.company}
-                title={member.title}
-                dept={member.department}
-                />
-              <RightTable
-                phone={member.phone}
-                address={member.address}
-                city={member.city}
-                state={member.state}
-                zip={member.zip}
-                url={member.url}
-              />
-              <Image
-                url={member.image}
-                width={173}
-                height={104}
-              />
-            </div>
-          )
-        })}
+    <div id="App" className="padding-1">
+      <div className="flex items-center justify-center">
+        <img
+          className="logo"
+          src="/logo.png"
+          alt="U.S. Ski and Snowboard Logo"
+        />
+        <h1 className="text-white ml-5 font-medium">U.S. Ski and Snowboard Coding Test</h1>
       </div>
-    </>
+      <Input
+        placeholder="Search..."
+        backgroundColor="white"
+        width="40%"
+        variant="outline"
+        onChange={handleChange}
+        className="mt-2 mb-4"
+      />
+      <div id="members" className="padding-1 bg-white">
+        <ConditionallyRenderMembers
+          isLoading={isLoading}
+          members={membersFiltered}
+          color='#7B86A1'
+          thickness='3px'
+          size='xl'
+        />
+      </div>
+    </div>
   )
 }
 
