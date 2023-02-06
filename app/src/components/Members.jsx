@@ -7,7 +7,7 @@ function Members({members=[]}) {
       {members.map( member => {
         return (
           <div key={member.id} className="grid grid-cols-3 p-4 member-row">
-            <Table
+            <LeftTable
               firstName={member.firstName}
               lastName={member.lastName}
               company={member.company}

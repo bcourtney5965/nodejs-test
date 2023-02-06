@@ -3,7 +3,6 @@ import axios from 'axios';;
 import ConditionallyRender from '../components/ConditionallyRender';
 import Members from '../components/Members';
 import { Input } from '@chakra-ui/react'
-import { SearchIcon } from '@chakra-ui/icons'
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { setMembers, setFilteredMembers, filterMembers } from '../Redux/memberSlice'
