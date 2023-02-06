@@ -4,6 +4,7 @@
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 12px;
   line-height: 1.5;
   font-weight: 400;
 
@@ -21,7 +22,7 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }

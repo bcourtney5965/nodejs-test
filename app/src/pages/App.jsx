@@ -46,7 +46,7 @@ function App() {
   }, [])
 
   return (
-    <div id="App" className="padding-1">
+    <div id="App">
       <div className="flex items-center justify-center">
         <img
           className="logo"
@@ -58,12 +58,12 @@ function App() {
       <Input
         placeholder="Search..."
         backgroundColor="white"
-        width="40%"
+        width="22rem"
         variant="outline"
         onChange={handleChange}
-        className="mt-2 mb-4"
+        className="mt-4 mb-3"
       />
-      <div id="members" className="padding-1 bg-white">
+      <div id="members" className="bg-white">
         <ConditionallyRenderMembers
           isLoading={isLoading}
           members={membersFiltered}
