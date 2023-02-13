@@ -1,33 +1,55 @@
-import LeftTable from '../components/LeftTable';
-import RightTable from '../components/RightTable';
+import SubTable from './SubTable';
+import classNames from 'classnames';
 
-function Members({members=[]}) {
+function Members({members=[], styles=[], rowStyles=[]}) {
   return (
-    <div className="grid grid-cols-1">
+    <div className={classNames([...styles])}>
       {members.map( member => {
         return (
-          <div key={member.id} className="grid grid-cols-3 p-4 member-row">
-            <LeftTable
-              firstName={member.firstName}
-              lastName={member.lastName}
-              company={member.company}
-              title={member.title}
-              dept={member.department}
-              className="table text-left"
-
-              />
-            <RightTable
-              phone={member.phone}
-              address={member.address}
-              city={member.city}
-              state={member.state}
-              zip={member.zip}
-              url={member.url}
-              className="table text-left"
-            />
+          <div key={member.id} className={classNames([...rowStyles])}>
+            <SubTable colStyles={["w-1/3"]} styles={["table", "text-left"]}>
+              <tbody>
+                <tr>
+                  <th>Name:</th>
+                  <td>{member.firstName} {member.lastName}</td>
+                </tr>
+                <tr>
+                  <th>Company:</th>
+                  <td>{member.company}</td>
+                </tr>
+                <tr>
+                  <th>Title:</th>
+                  <td>{member.title}</td>
+                </tr>
+                <tr>
+                  <th>Department:</th>
+                  <td>{member.department}</td>
+                </tr>
+              </tbody>
+            </SubTable>
+            <SubTable colStyles={["w-1/3"]} styles={["table", "text-left"]}>
+              <tbody>
+                <tr>
+                  <th>Phone:</th>
+                  <td>{member.phone}</td>
+                </tr>
+                <tr>
+                  <th>Address:</th>
+                  <td>{member.address}</td>
+                </tr>
+                <tr>
+                  <th>{" "}</th>
+                  <td>{member.city}, {member.state} {member.zip}</td>
+                </tr>
+                <tr>
+                  <th>Website:</th>
+                  <td>{member.url}</td>
+                </tr>
+              </tbody>
+            </SubTable>
             <div>
               <img
-                className="member-img"
+                className={classNames("member-img")}
                 src={member.image}
                 alt={`image of ${member.firstName} ${member.lastName}`}
               />

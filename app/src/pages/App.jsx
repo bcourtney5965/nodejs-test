@@ -66,6 +66,8 @@ function App() {
         <ConditionallyRenderMembers
           isLoading={isLoading}
           members={membersFiltered}
+          styles={["grid", "grid-cols-1"]}
+          rowStyles={["grid", "grid-cols-3", "p-4", "member-row"]}
           color='#7B86A1'
           thickness='3px'
           size='xl'
